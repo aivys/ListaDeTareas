@@ -35,6 +35,12 @@ export default function HomePage() {
     setTasks(updatedTasks);
   };
 
+  //Función para limpiar tareas completadas
+  const handleClearCompleted = () => {
+    const incompleteTasks = tasks.filter((task) => !task.completed);
+    setTasks(incompleteTasks);
+  };
+
   // 1. La nueva función para eliminar una tarea
   const handleDeleteTask = (idToDelete) => {
     // Usamos filter() para crear un nuevo array sin la tarea a eliminar
@@ -55,7 +61,18 @@ export default function HomePage() {
         style={{ padding: "8px", fontSize: "16px", marginRight: "10px" }}
       />
       <button onClick={handleAddTask}>Añadir Tarea</button>
-
+      <br></br>
+      {/*Botón para limpiar tareas completadas*/}
+      <button
+        onClick={handleClearCompleted}
+        style={{
+          marginTop: "20px",
+          padding: "10px 20px",
+          fontSize: "16px",
+        }}
+      >
+        Limpiar tareas completadas
+      </button>
       <ul style={{ listStyleType: "none", padding: 0 }}>
         {tasks.map((task) => (
           <li
